@@ -8,12 +8,12 @@ game.PlayerEntity =me.Entity.extend({
                width: 128,
                height: 128,
                getShape: function(){
-                   return (new me.Rect(0, 0, 128, 128)).toPolygon;
+                   return (new me.Rect(0, 0, 128, 128)).toPolygon();
                }
        }]);
        
    
-   this.body.setVelocity(5, 0);
+   this.body.setVelocity(5, 20); 
       
    },
    update: function(delta){
