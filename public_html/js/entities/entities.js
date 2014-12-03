@@ -71,7 +71,7 @@ game.LevelTrigger = me.Entity.extend({
     
     });
     
-  /*  game.BadGuy = me.entity.extend({
+    game.BadGuy = me.Entity.extend({
         init: function(x, y, settings){
             this._super(me.Entity, 'init', [x, y, {
                 image: "slime",
@@ -106,7 +106,7 @@ game.LevelTrigger = me.Entity.extend({
         
         update: function(delta){
             this.body.update(delta);
-            me.collision.check(this, true, this.collideHandler.bind());
+            me.collision.check(this, true, this.collideHandler.bind(this), true);
       
             if(this.alive){
                 if(this.walkLeft && this.pos.x <= this.startX){
@@ -123,10 +123,10 @@ game.LevelTrigger = me.Entity.extend({
       
       
             this._super(me.Entity, "update", [delta]);
-        },
+        },  
         
         collideHandler: function(){
             
         }
         
-    }); */
+    }); 
