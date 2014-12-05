@@ -2,17 +2,18 @@ game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, {
                 image: "mario",
-                spritewidth: "128",
-                spriteheight: "128",
-                width: 128,
-                height: 128,
+                 spritewidth: "63",
+                spriteheight: "63",
+                width: 63,
+                height: 63,
                 getShape: function() {
-                    return (new me.Rect(0, 0, 30 , 128)).toPolygon();
+                //    return (new me.Rect(0, 0, 30 , 128)).toPolygon();
+                 return (new me.Rect(0, 0, 30 , 45)).toPolygon();
                 }
             }]);
 
-        this.renderable.addAnimation("idle", [3]);
-        this.renderable.addAnimation("smallWalk", [8, 9, 10, 11, 12, 13], 80);
+        this.renderable.addAnimation("idle", [0]);
+        this.renderable.addAnimation("smallWalk", [0, 1, 2, 3, 4, 5, 6, 7, 8], 70);
 
         this.renderable.setCurrentAnimation("idle");
 
@@ -22,13 +23,14 @@ game.PlayerEntity = me.Entity.extend({
     update: function(delta) {
         
         if (me.input.isKeyPressed("right")) {
+        
+ 
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
         } else {
             this.body.vel.x = 0;
         }
-        
-        
+       
          this.body.update(delta);
          me.collision.check(this, true, this.collideHandler.bind(this), true);
 
@@ -44,9 +46,20 @@ game.PlayerEntity = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     },
-    
-    collideHandler: function(response){
+
         
+    collideHandler: function(response){
+        var ydif = this.pos.y - response.b.pos.y;
+        console.log(ydif);
+        
+        if(response.b.type === 'badguy'){
+            if(ydif <= -115){
+                
+            }else{
+            
+            me.state.change(me.state.MENU);
+            }
+        }
     }
     
 
