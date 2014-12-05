@@ -8,7 +8,7 @@ game.PlayerEntity = me.Entity.extend({
                 height: 63,
                 getShape: function() {
                 //    return (new me.Rect(0, 0, 30 , 128)).toPolygon();
-                 return (new me.Rect(0, 0, 30 , 45)).toPolygon();
+                 return (new me.Rect(0, 0, 20 , 45)).toPolygon();
                 }
             }]);
 
@@ -23,13 +23,31 @@ game.PlayerEntity = me.Entity.extend({
     update: function(delta) {
         
         if (me.input.isKeyPressed("right")) {
-        
- 
             this.body.vel.x += this.body.accel.x * me.timer.tick;
-
+            this.flipX(false);
         } else {
             this.body.vel.x = 0;
         }
+        
+          if (me.input.isKeyPressed("left")) {
+            this.body.vel.x -= this.body.accel.x * me.timer.tick;
+            this.flipX(true);
+            
+        } else {
+            this.body.vel.x - 0;
+        }
+       
+        if (me.input.isKeyPressed('jump')) {   
+    if (!this.body.jumping && !this.body.falling) {
+        // set current vel to the maximum defined value
+        // gravity will then do the rest
+        this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
+        // set the jumping flag
+        this.body.jumping = true;
+        // play some audio 
+        me.audio.play("jump");
+    }
+}
        
          this.body.update(delta);
          me.collision.check(this, true, this.collideHandler.bind(this), true);
@@ -53,8 +71,8 @@ game.PlayerEntity = me.Entity.extend({
         console.log(ydif);
         
         if(response.b.type === 'badguy'){
-            if(ydif <= -115){
-                
+            if(ydif <= -35){
+                response.b.alive = false;
             }else{
             
             me.state.change(me.state.MENU);
