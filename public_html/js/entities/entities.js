@@ -161,3 +161,26 @@ game.LevelTrigger = me.Entity.extend({
         }
         
     }); 
+    
+    game.Mushroom = me.Entity.extend({
+        init: function(x, y, settings){
+             this._super(me.Entity, 'init', [x, y, {
+                image: "mushroom",
+                 spritewidth: "63",
+                spriteheight: "63",
+                width: 63,
+                height: 63,
+                getShape: function() {
+                //    return (new me.Rect(0, 0, 30 , 128)).toPolygon();
+                 return (new me.Rect(0, 0, 63 , 63)).toPolygon();
+        
+                }
+         }]);
+     
+         me.collision.check(this);
+         this.type = "mushroom";
+         
+        }    
+        
+        
+    });
