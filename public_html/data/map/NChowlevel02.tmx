@@ -44,10 +44,8 @@
  <objectgroup name="EnemyEntities">
   <object name="BadGuy" x="351.892" y="421.062" width="205.895" height="68.1616" rotation="-360.343"/>
   <object name="BadGuy" x="633.148" y="421.612" width="208.352" height="69.1129" rotation="-0.118455"/>
-  <object name="BadGuy" x="420.225" y="562.729" width="69.2707" height="60.6769" rotation="-360.343"/>
-  <object name="BadGuy" x="698.559" y="564.395" width="69.2707" height="60.6769" rotation="-360.343"/>
-  <object name="BadGuy" x="140.225" y="564.395" width="69.2707" height="60.6769" rotation="-360.343"/>
-  <object name="BadGuy" x="978.559" y="562.729" width="69.2707" height="60.6769" rotation="-360.343"/>
-  <object name="BadGuy" x="978.559" y="562.729" width="69.2707" height="60.6769" rotation="-360.343"/>
+ </objectgroup>
+ <objectgroup name="CollectableEntities">
+  <object name="Mushroom" x="143.333" y="490" width="66.6667" height="66.6667"/>
  </objectgroup>
 </map>

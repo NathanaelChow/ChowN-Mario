@@ -13,10 +13,13 @@ game.PlayerEntity = me.Entity.extend({
             }]);
 
         this.renderable.addAnimation("idle", [0]);
+        this.renderable.addAnimation("bigIdle", [0]);
         this.renderable.addAnimation("smallWalk", [0, 1, 2, 3, 4, 5, 6, 7, 8], 70);
+        this.renderable.addAnimation("bigWalk", [8, 7, 6, 5, 4, 3, 2, 1, 0], 70);
 
         this.renderable.setCurrentAnimation("idle");
 
+        this.big = false;
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
@@ -52,6 +55,7 @@ game.PlayerEntity = me.Entity.extend({
          this.body.update(delta);
          me.collision.check(this, true, this.collideHandler.bind(this), true);
 
+         if(this.big){
         if (this.body.vel.x !== 0) {
             if (!this.renderable.isCurrentAnimation("smallWalk")) {
                 this.renderable.setCurrentAnimation("smallWalk");
@@ -59,6 +63,15 @@ game.PlayerEntity = me.Entity.extend({
         } else {
             this.renderable.setCurrentAnimation("idle");
         }
+    }else{
+        if (this.body.vel.x !== 0) {
+            if (!this.renderable.isCurrentAnimation("bigWalk")) {
+                this.renderable.setCurrentAnimation("bigWalk");
+            }
+        } else {
+            this.renderable.setCurrentAnimation("bigIdle");
+        } 
+    }
         
 
         this._super(me.Entity, "update", [delta]);
@@ -77,6 +90,9 @@ game.PlayerEntity = me.Entity.extend({
             
             me.state.change(me.state.MENU);
             }
+        }else if(response.b.type === 'mushroom'){
+            this.big = true;
+            console.log("Big!");
         }
     }
     
@@ -166,13 +182,13 @@ game.LevelTrigger = me.Entity.extend({
         init: function(x, y, settings){
              this._super(me.Entity, 'init', [x, y, {
                 image: "mushroom",
-                 spritewidth: "63",
-                spriteheight: "63",
-                width: 63,
-                height: 63,
+                 spritewidth: "64",
+                spriteheight: "64",
+                width: 64,
+                height: 64,
                 getShape: function() {
-                //    return (new me.Rect(0, 0, 30 , 128)).toPolygon();
-                 return (new me.Rect(0, 0, 63 , 63)).toPolygon();
+                
+                 return (new me.Rect(0, 0, 64 , 64)).toPolygon();
         
                 }
          }]);

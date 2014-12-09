@@ -9,7 +9,9 @@ game.resources = [
     
   //  {name: "mario", type: "image", src: "data/img/player1.png"},
     {name: "mario", type: "image", src: "data/img/character2.png"},
-  // {name: "mario", type: "image", src: "data/img/person.png"},
+  // {name: "mario", type: "image", src: "data/img/character.png"},
+  
+  //{name: "mario", type: "image", src: "data/img/bigcharacter2.png"},
     
     {name: "title-screen", type: "image", src: "data/img/title-screen.png"},
      {name: "slime", type: "image", src: "data/img/slime-spritesheet.png"},
