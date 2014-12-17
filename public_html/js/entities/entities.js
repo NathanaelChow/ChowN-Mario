@@ -193,6 +193,8 @@ game.LevelTrigger = me.Entity.extend({
                 }
          }]);
      
+      this.renderable.addAnimation("smallWalk", [100,101,102,103,104,105,106,107], 70);
+     
          me.collision.check(this);
          this.type = "mushroom";
          
